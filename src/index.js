@@ -19,13 +19,13 @@ const countryInfoRef = document.querySelector('.country-info');
 
 inputRef.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
+instruction();
+
 function onInput(e) {
   clearInput();
   const name = e.target.value.trim();
   if (name === '') {
-    return Notify.info(
-      `It can't be empty field! Please, fill it up with at least two letters!`
-    );
+    return Notify.info(`Please fill in the field`);
   }
   fetchCountries(name)
     .then(data => {
@@ -47,4 +47,9 @@ function onInput(e) {
 function clearInput() {
   countryListRef.innerHTML = '';
   countryInfoRef.innerHTML = '';
+}
+function instruction() {
+  Notify.info(
+    `To receive information about the country, please fill in the field`
+  );
 }
